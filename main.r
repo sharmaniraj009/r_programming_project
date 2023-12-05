@@ -109,3 +109,24 @@ barplot(top_10_source, main = "Top 10 Source", xlab = "Source", ylab = "Count")
 sorted_personName_dataset <- top_20_rank_individuals[order(top_20_rank_individuals$personName), ]
 # Print the 'personName' and 'total_tax_rate_country' of the sorted dataset
 print(paste(sorted_personName_dataset$personName, sorted_personName_dataset$total_tax_rate_country, sep = " - "))
+
+
+
+library(ggplot2)
+library(maps)
+# Create a data frame for the wealth distribution
+wealth_distribution <- data.frame(
+    latitude = Billionaires.Statistics.Dataset$latitude_country,
+    longitude = Billionaires.Statistics.Dataset$longitude_country,
+    wealth = Billionaires.Statistics.Dataset$finalWorth
+)
+# Create a world map
+world_map <- map_data("world")
+# Create a geolocation graph for wealth distribution
+ggplot() +
+    geom_polygon(data = world_map, aes(x = long, y = lat, group = group), fill = "white", color = "black") +
+    geom_point(data = wealth_distribution, aes(x = longitude, y = latitude, size = wealth), color = "blue") +
+    theme_minimal() +
+    labs(title = "Wealth Distribution", x = "Longitude", y = "Latitude", size = "Wealth")
+
+
