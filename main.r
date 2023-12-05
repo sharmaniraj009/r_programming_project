@@ -12,6 +12,8 @@ nrow(Billionaires.Statistics.Dataset)
 ncol(Billionaires.Statistics.Dataset)
 names(Billionaires.Statistics.Dataset)
 
+# Sort the dataset by the 'rank' column in ascending order
+sorted_rank_dataset <- Billionaires.Statistics.Dataset[order(Billionaires.Statistics.Dataset$rank), ]
 # Select the top 20 individuals by rank
 top_20_rank_individuals <- head(sorted_rank_dataset, 20)
 # Concatenate 'personName' and 'source'
@@ -21,7 +23,6 @@ print(person_source)
 
 
 
-# Assuming 'category' is the column in your dataset
 category_counts <- table(Billionaires.Statistics.Dataset$category)
 # Calculate percentages
 category_percentages <- round(category_counts / sum(category_counts) * 100)
@@ -31,13 +32,12 @@ labels <- paste(names(category_percentages), ": ", category_percentages, "%", se
 pie(category_counts, main = "Pie Chart of Category", col = rainbow(length(category_counts)), labels = labels)
 
 
-# Assuming 'industry' is the column in your dataset
 industry_counts <- table(Billionaires.Statistics.Dataset$industries)
 # Draw histogram
 barplot(industry_counts, main = "Histogram of Industries", xlab = "Industry", ylab = "Frequency")
 
 
-# Assuming 'selfMade' is the column in your dataset
+Billionaires.Statistics.Dataset$selfMade <- ifelse(Billionaires.Statistics.Dataset$selfMade, "Self Made", "Inherited")
 selfMade_counts <- table(Billionaires.Statistics.Dataset$selfMade)
 # Calculate percentages
 selfMade_percentages <- round(selfMade_counts / sum(selfMade_counts) * 100)
@@ -47,7 +47,6 @@ labels <- paste(names(selfMade_percentages), ": ", selfMade_percentages, "%", se
 pie(selfMade_counts, main = "Pie Chart of Self Made", col = rainbow(length(selfMade_counts)), labels = labels)
 
 
-# Assuming 'gender' is the column in your dataset
 gender_counts <- table(Billionaires.Statistics.Dataset$gender)
 # Calculate percentages
 gender_percentages <- round(gender_counts / sum(gender_counts) * 100)
@@ -58,7 +57,6 @@ pie(gender_counts, main = "Pie Chart of Gender", col = rainbow(length(gender_cou
 
 
 #counts
-# Assuming 'finalWorth' is the column in your dataset
 total_finalWorth <- sum(Billionaires.Statistics.Dataset$finalWorth, na.rm = TRUE)
 total_finalWorth_f <- total_finalWorth / 1000
 # Print total_finalWorth in billion
@@ -86,7 +84,7 @@ birthYear_filtered <- Billionaires.Statistics.Dataset$birthYear[Billionaires.Sta
 # Count the occurrences of each year
 birthYear_counts <- table(birthYear_filtered)
 # Draw bar graph
-barplot(birthYear_counts, main = "Bar Graph of Birth Year (1940 onwards)", xlab = "Birth Year", ylab = "Frequency")# Assuming 'Billionaires.Statistics.Dataset' is your dataset
+barplot(birthYear_counts, main = "Bar Graph of Birth Year (1940 onwards)", xlab = "Birth Year", ylab = "Frequency")
 
 
 # Create a frequency table of the 'source' column
