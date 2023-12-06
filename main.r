@@ -127,4 +127,3 @@ ggplot() +
     theme_minimal() +
     labs(title = "Wealth Distribution", x = "Longitude", y = "Latitude", size = "Wealth")
 
-
