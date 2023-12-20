@@ -9,6 +9,7 @@ View(billionaires_2020)
 billionaires_2019 <- read.csv("C:/Users/ADMIN/Desktop/usci/billionare_data_for_ml/billionaires_2019.csv")
 View(billionaires_2019)
 
+names(billionaires_2019)
 # Extract the 'full_name' column from each data frame
 names_2023 <- billionaires_2023$full_name
 names_2022 <- billionaires_2022$full_name
@@ -111,6 +112,7 @@ ggplot(arnault_data, aes(x = year, y = net_worth, group = 1)) +
 
 
 
+library(ggplot2)
 # top businesses in last 5 year to land them in top billionare list 
 top_2023 <- billionaires_2023[billionaires_2023$rank <= 10, ]
 top_2022 <- billionaires_2022[billionaires_2022$rank <= 10, ]
